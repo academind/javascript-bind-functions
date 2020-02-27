@@ -12,7 +12,8 @@ const goals = [
   }
 ];
 
-function setAsActiveHandler(goalId) {
+function setAsActiveHandler(goalId, event) {
+  console.log(event);
   const selectedGoal = goals.find(g => g.id === goalId);
   activeGoalElement.textContent = selectedGoal.text;
 }
@@ -24,7 +25,9 @@ function init() {
       <span>${goal.text}</span>
       <button>Set as Active Goal</button>
     `;
-
+    goalElement
+      .querySelector('button')
+      .addEventListener('click', setAsActiveHandler.bind(null, goal.id));
     goalListElement.append(goalElement);
   }
 }
